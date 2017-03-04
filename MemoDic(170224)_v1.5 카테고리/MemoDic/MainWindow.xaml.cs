@@ -16,6 +16,8 @@ using System.IO;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Animation;
 using SSLibrary;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace MemoDic {
 	/// <summary>
@@ -28,12 +30,32 @@ namespace MemoDic {
 		public static List<string[]> configInfo = new List<string[]>();
 		public static List<string[]> logInfo = new List<string[]>();
 		public static List<string[]> userInfo = new List<string[]>();
+
+        private List<User> userlist = new List<User>();
+        private LastUser lastuser = new LastUser();
+
 		CHBTRVVM CHBViewModel = new CHBTRVVM();
 		NetworkItem NImyStuff = new NetworkItem("myStuff");
 
 		public MainWindow() {
 			InitializeComponent();
-			try {
+
+            //List<User> list = GetTypeFromJson<List<User>>("1213213");
+
+            //userlist.Add(new User() { ID = "Alice", Password = "1234" });
+            //userlist.Add(new User() { ID = "Paul", Password = "123$" });
+            //userlist.Add(new User() { ID = "Tom", Password = "123$%" });
+
+            //string userJson = JsonConvert.SerializeObject(userlist);
+            // encrypt, RijndaelManaged
+            //SaveFile("userinfo.txt", userJson);
+
+            //string json = File.ReadAllText("userinfo.txt");
+            // decrypt, RijndaelManaged
+            //userlist = JsonConvert.DeserializeObject<List<User>>(json);
+
+            try
+            {
 				// 프로그램 시작 시 정보 로딩
 				configInfo = LoadFile("config.dat", 0);
 				userInfo = LoadFile("user.dat", 5);
@@ -243,5 +265,19 @@ namespace MemoDic {
 			}
 			return output.ToString();
 		}
+        
+        private bool SaveFile(string filename, string json)
+        {
+            try
+            {
+                File.WriteAllText(filename, json);
+                return true;
+            }
+            catch (Exception e)
+            {
+                // 예외 처리
+            }
+            return false;
+        }
 	}
 }
