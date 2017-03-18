@@ -7,6 +7,9 @@
         xmlns:SSLibrary="clr-namespace:SSLibrary;assembly=SSLibrary"
         mc:Ignorable="d"
         Title="MemoDic" Height="350" Width="525">
+    <Window.Resources>
+        <local:StringEmptyToVisibility x:Key="StringEmptyToVisibility"/>
+    </Window.Resources>
     <Grid>
         <TextBox x:Name="TB_ID" HorizontalAlignment="Left" Height="23" Margin="10,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" MaxLength="10" KeyDown="TB_ID_KeyDown"/>
         <TextBlock IsHitTestVisible="False" Text=" ID" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="{Binding Margin, ElementName=TB_ID}" Foreground="DarkGray">
@@ -21,7 +24,13 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <PasswordBox x:Name="PB_PW" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="144" PasswordChanged="PB_PW_PasswordChanged" Height="23" KeyDown="PB_PW_KeyDown"/>
+        <PasswordBox x:Name="PB_PW" PasswordChanged="PB_PW_PasswordChanged" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Width="144" Height="23" KeyDown="PB_PW_KeyDown">
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="PasswordChanged">
+                    <i:InvokeCommandAction Command="{Binding Path=PasswordChangedCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+        </PasswordBox>
         <TextBlock x:Name="TBL_PW" IsHitTestVisible="False" Text=" PW" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="{Binding Margin, ElementName=PB_PW}" Foreground="DarkGray"/>
         <CheckBox x:Name="CHB_Remember_me" Content="Remember me" HorizontalAlignment="Left" Height="23" Margin="10,63,0,0" VerticalAlignment="Top" Width="101" Foreground="#CC000000" Cursor="Hand" Background="White"/>
         <Button x:Name="BTT_Login" Content="Login" HorizontalAlignment="Left" Height="47" Margin="165,10,0,0" VerticalAlignment="Top" Width="86" Click="BTT_Login_Click" BorderThickness="1" FontSize="14"/>

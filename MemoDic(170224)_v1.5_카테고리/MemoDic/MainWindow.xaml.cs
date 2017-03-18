@@ -94,6 +94,8 @@ namespace MemoDic {
 
 			CHBViewModel.NetworkItems.Add(NImyStuff);
 			CHBTRV_CHBTreeView.DataContext = CHBViewModel;
+
+            DataContext = new MainWindowViewModel();
 		}
 		
 		protected override void OnClosed(EventArgs e) {
@@ -111,12 +113,7 @@ namespace MemoDic {
 			if (e.Key == Key.Enter) BTT_Login_Click(sender, e);
 		}
 
-		private void PB_PW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_PW.Password == "") TBL_PW.Visibility = Visibility.Visible;
-			else TBL_PW.Visibility = Visibility.Collapsed;
-		}
-
-		public void BTT_Login_Click(object sender, RoutedEventArgs e) {
+        public void BTT_Login_Click(object sender, RoutedEventArgs e) {
 			// 로그아웃
 			if (loginFlag) {
 				// 로그인 가능 상태로 초기화
@@ -217,7 +214,7 @@ namespace MemoDic {
 						string[] sTemp = sr.ReadLine().Split('\t');
 						if (sTemp.Length == 1) sTemp = new string[] { sTemp[0], "" }; // 배열길이는 null이 아니면 최소 2여야 함.
 						for(int j=0; j<sTemp.Length; j++) {
-							sTemp[j] = code(sTemp[j], codingPar);
+							sTemp[j] = Code(sTemp[j], codingPar);
 						}
 						sTempList.Add(sTemp);
 					}
@@ -235,7 +232,7 @@ namespace MemoDic {
 				StringBuilder sb = new StringBuilder();
 				for(int i=0; i<Info.Count; i++) {
 					for(int j=0; j<Info[i].Length; j++) {
-						sb.Append(code(Info[i][j], codingPar) + "\t");
+						sb.Append(Code(Info[i][j], codingPar) + "\t");
 					}
 					sb.Remove(sb.Length -1, 1);
 					sb.Append("\n");
@@ -258,14 +255,19 @@ namespace MemoDic {
 		}
 
 		// 암호화 및 복호화
-		private static string code(string input, int codingPar) {
+		private static string Code(string input, int codingPar) {
 			StringBuilder output = new StringBuilder();
 			for(int i=0; i<input.Length; i++) {
 				output.Append((char) ((int) input[i] + codingPar));
 			}
 			return output.ToString();
 		}
-        
+
+        private void PB_PW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_PW.Password, TBL_PW);
+        }
+
         private bool SaveFile(string filename, string json)
         {
             try
@@ -276,6 +278,7 @@ namespace MemoDic {
             catch (Exception e)
             {
                 // 예외 처리
+                Debug.WriteLine(e.Message);
             }
             return false;
         }

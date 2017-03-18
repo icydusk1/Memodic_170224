@@ -21,15 +21,15 @@ namespace MemoDic {
 			InitializeComponent();
 		}
 
-		private void PB_NewPW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_NewPW.Password == "") TBL_NewPW.Visibility = Visibility.Visible;
-			else TBL_NewPW.Visibility = Visibility.Collapsed;
-		}
+		private void PB_NewPW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_NewPW.Password, TBL_NewPW);
+        }
 
-		private void PB_ConfirmNewPW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_ConfirmNewPW.Password == "") TBL_ConfirmNewPW.Visibility = Visibility.Visible;
-			else TBL_ConfirmNewPW.Visibility = Visibility.Collapsed;
-		}
+		private void PB_ConfirmNewPW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_ConfirmNewPW.Password, TBL_ConfirmNewPW);
+        }
 
 		private void BTT_OK_Click(object sender, RoutedEventArgs e) {
 			// ID 및 PW 매칭 검사

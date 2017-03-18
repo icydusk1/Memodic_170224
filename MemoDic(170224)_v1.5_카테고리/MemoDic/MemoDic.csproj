@@ -76,10 +76,13 @@
       <DependentUpon>FindPWWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LastUser.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="RegisterIDWindow.xaml.cs">
       <DependentUpon>RegisterIDWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StringEmptyToVisibility.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Util.cs" />
     <Page Include="ChangePWWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

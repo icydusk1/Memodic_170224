@@ -24,10 +24,10 @@ namespace MemoDic {
 			mainWindow = mainWindowRef;
 		}
 
-		private void PB_ConfirmPW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_ConfirmPW.Password == "") TBL_ConfirmPW.Visibility = Visibility.Visible;
-			else TBL_ConfirmPW.Visibility = Visibility.Collapsed;
-		}
+		private void PB_ConfirmPW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_ConfirmPW.Password, TBL_ConfirmPW);
+        }
 
 		private void BTT_OK_Click(object sender, RoutedEventArgs e) {
 			if(PB_ConfirmPW.Password != MainWindow.PW) MessageBox.Show("New PW for confirmation is incorrect.");
