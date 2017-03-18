@@ -12,3 +12,12 @@ namespace MemoDic
         public string Password { get; set; }
     }
 }
+
+namespace MemoDic2
+{
+    class User
+    {
+        public string ID { get; set; }
+        public string Password { get; set; }
+    }
+}

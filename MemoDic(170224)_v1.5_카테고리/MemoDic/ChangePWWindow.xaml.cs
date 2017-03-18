@@ -16,25 +16,27 @@ namespace MemoDic {
 	/// <summary>
 	/// Interaction logic for ChangePWWindow.xaml
 	/// </summary>
-	public partial class ChangePWWindow : Window {
-		public ChangePWWindow() {
+	public partial class ChangePWWindow : Window
+    {
+		public ChangePWWindow()
+        {
 			InitializeComponent();
 		}
-
-		private void PB_PW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_PW.Password == "") TBL_PW.Visibility = Visibility.Visible;
-			else TBL_PW.Visibility = Visibility.Collapsed;
+                
+		private void PB_PW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_PW.Password, TBL_PW);
 		}
 
-		private void PB_NewPW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_NewPW.Password == "") TBL_NewPW.Visibility = Visibility.Visible;
-			else TBL_NewPW.Visibility = Visibility.Collapsed;
-		}
+		private void PB_NewPW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_NewPW.Password, TBL_NewPW);
+        }
 
-		private void PB_ConfirmNewPW_PasswordChanged(object sender, RoutedEventArgs e) {
-			if (PB_ConfirmNewPW.Password == "") TBL_ConfirmNewPW.Visibility = Visibility.Visible;
-			else TBL_ConfirmNewPW.Visibility = Visibility.Collapsed;
-		}
+		private void PB_ConfirmNewPW_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Util.PasswordTextVisibility(PB_ConfirmNewPW.Password, TBL_ConfirmNewPW);
+        }
 
 		private void BTT_OK_Click(object sender, RoutedEventArgs e) {
 			// ID 및 PW 매칭 검사
